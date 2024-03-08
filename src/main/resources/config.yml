@@ -1,0 +1,4 @@
+firstboot: 0
+rabbitmq:
+  port: 27003
+  ip: 172.18.0.1

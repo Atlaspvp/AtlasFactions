@@ -1,0 +1,4 @@
+name: AtlasFactions
+version: '${project.version}'
+main: net.atlaspvp.atlasfactions.AtlasFactions
+api-version: 1.20
