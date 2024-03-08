@@ -15,7 +15,6 @@ public class Configuration {
     public static ConnectionFactory factory;
 
     public static int RabbitPort = 0;
-    public static int firstBoot;
     public static String RabbitIP = "";
 
     public static void Initialize(Plugin plugin) {
@@ -28,7 +27,6 @@ public class Configuration {
         config = YamlConfiguration.loadConfiguration(file);
         RabbitIP = config.getString("rabbitmq.ip");
         RabbitPort = config.getInt("rabbitmq.port");
-        firstBoot = config.getInt("firstboot");
 
         factory = new ConnectionFactory();
         factory.setHost(getRabbitIP());
@@ -49,10 +47,4 @@ public class Configuration {
     public static int getRabbitPort() {
         return RabbitPort;
     }
-
-    public static int getFirstBoot() {
-        return firstBoot;
-    }
-
-
 }

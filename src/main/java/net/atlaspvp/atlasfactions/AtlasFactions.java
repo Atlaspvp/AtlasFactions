@@ -31,11 +31,8 @@ public final class AtlasFactions extends JavaPlugin {
             Manager.Factions = new HashMap<>();
         }
 
-        if (Configuration.getFirstBoot() == 1) {
-            Consumer.pullFaction();
-            Consumer.pullFPlayers();
-
-        }
+        Consumer.pullFaction();
+        Consumer.pullFPlayers();
 
         getServer().getPluginManager().registerEvents(new BlockListeners(), this);
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
@@ -48,7 +45,6 @@ public final class AtlasFactions extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Configuration.getConfig().set("firstboot", 1);
         Sender.sendFaction();
         Sender.sendFPlayer();
     }
