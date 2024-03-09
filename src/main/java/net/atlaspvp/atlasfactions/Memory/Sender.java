@@ -58,4 +58,26 @@ public class Sender {
         }
     }
 
+    public static void sendClaims() {
+        HashMap<String, String> saving = Manager.Claims;
+        try (Connection connection = factory.newConnection()) {
+            Channel channel = connection.createChannel(); // Create a new channel in rabbitMQ
+
+
+            String QUEUEName = "ClaimsDatabase";
+            channel.queueDeclare(QUEUEName, false, false, false, null); // Create a new Queue with the name of the Container Identifier
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(bos);
+            out.writeObject(saving); // Serialize the PlayerData
+            out.close();
+            byte[] serializedPlayerData = bos.toByteArray(); // Byte array (Serialized) PlayerData
+
+            // Send the serialized PlayerData object to RabbitMQ
+            channel.basicPublish("", QUEUEName, null, serializedPlayerData);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
 }

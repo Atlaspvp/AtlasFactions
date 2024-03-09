@@ -16,15 +16,12 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event){
-        PersistentDataContainer pdc = event.getBlock().getLocation().getChunk().getPersistentDataContainer();
         Faction faction = Manager.getFPlayer(event.getPlayer()).getFaction();
-        if (pdc.getKeys().contains(Faction.CLAIM_KEY)) {
-            String claimingfaction = pdc.get(Faction.CLAIM_KEY, PersistentDataType.STRING);
-            Faction faction1 = Manager.getFaction(claimingfaction);
-            if (faction1 != faction) {
+        if (Manager.isClaimed(event.getBlock().getChunk())) {
+            if (!Faction.isSameFaction(faction, Manager.getClaimOwner(event.getBlock().getChunk()))) {
                 event.setCancelled(true);
-                event.getPlayer().sendMessage("You cannot place blocks in " + Manager.getFaction(claimingfaction).getName());
-                System.out.println(UUID.fromString(claimingfaction) + " Comparing to " + faction.getUUID().toString());
+                Faction faction1 = Manager.getClaimOwner(event.getBlock().getChunk());
+                event.getPlayer().sendMessage("You cannot place blocks in " + faction1.getName());
             }
         }
     }

@@ -42,7 +42,9 @@ public class Faction implements Serializable {
         name = Name;
         members = new HashMap<>();
 
-        members.put(Manager.getFPlayer(player), Role.OWNER);
+        if (player != null) {
+            members.put(Manager.getFPlayer(player), Role.OWNER);
+        }
     }
 
     public void setName(String name) {

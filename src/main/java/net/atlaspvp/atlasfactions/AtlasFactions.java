@@ -31,8 +31,13 @@ public final class AtlasFactions extends JavaPlugin {
             Manager.Factions = new HashMap<>();
         }
 
+        if (Manager.Claims == null) {
+            Manager.Claims = new HashMap<>();
+        }
+
         Consumer.pullFaction();
         Consumer.pullFPlayers();
+        Consumer.pullClaims();
 
         getServer().getPluginManager().registerEvents(new BlockListeners(), this);
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
@@ -47,6 +52,7 @@ public final class AtlasFactions extends JavaPlugin {
     public void onDisable() {
         Sender.sendFaction();
         Sender.sendFPlayer();
+        Sender.sendClaims();
     }
 
     public static AtlasFactions getInst(){

@@ -38,6 +38,11 @@ public class Manager {
 
     public static Faction getClaimOwner(Chunk chunk) {
         String merged = Claims.get(chunk.getX() + ";" + chunk.getZ());
+
+        if (merged == null) {
+            return new Faction("Wilderness", null);
+        }
+
         String[] split = merged.split(";");
         Pair<String, String> pair = new Pair<>(split[0], split[1]);
         return getFaction(pair.first);
