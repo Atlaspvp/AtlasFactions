@@ -18,10 +18,16 @@ public class Claim {
     @CommandPermission("faction.claim")
     public void createClaim(final Player player) {
         if (player != null) {
+            Chunk chunk = player.getChunk();
             FPlayer fplayer = Manager.getFPlayer(player);
-            if (Faction.isWilderness(player.getChunk())){
-                PersistentDataContainer chunkPDC = player.getChunk().getPersistentDataContainer();
-                chunkPDC.set(new NamespacedKey(AtlasFactions.getInst(), "claimed"), PersistentDataType.STRING, fplayer.getFaction().getUUID().toString());
+            if (fplayer.getFaction() != null) {
+                if (!Manager.isClaimed(chunk)){
+                    Manager.claim(chunk, fplayer.getFaction().getUUID().toString(), System.currentTimeMillis());
+                } else {
+                    // Message
+                }
+            } else {
+                // Message
             }
         }
     }
@@ -31,11 +37,17 @@ public class Claim {
     public void removeClaim(Player player) {
         if (player != null) {
             FPlayer fplayer = Manager.getFPlayer(player);
-            if (Faction.isSameFaction(player.getChunk(), fplayer.getFaction())){
-                PersistentDataContainer chunkPDC = player.getChunk().getPersistentDataContainer();
-                chunkPDC.remove(Faction.CLAIM_KEY);
+            Chunk chunk = player.getChunk();
+            Faction chunkOwner = Manager.getClaimOwner(chunk);
+            if (fplayer.getFaction() != null) {
+                if (Faction.isSameFaction(chunkOwner, fplayer.getFaction())) {
+                    Manager.Claims.remove(chunk.getX() + ";" + chunk.getZ());
+                } else {
+                    // Message
+                }
+            } else {
+                // Message
             }
         }
     }
-
 }

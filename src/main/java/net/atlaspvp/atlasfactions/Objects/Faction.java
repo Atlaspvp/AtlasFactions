@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class Faction implements Serializable {
-    public static NamespacedKey CLAIM_KEY = new NamespacedKey(AtlasFactions.getInst(), "claimed");
-
     private String name;
     private UUID uuid;
     private String description;
@@ -27,14 +25,13 @@ public class Faction implements Serializable {
 
     private int power;
     private int maxpower;
-    private int amountclaimed;
     private int maxplayers;
+    private int claims;
     private double bankvalue;
     private double value;
 
     private Inventory chest;
     private HashMap<FPlayer, Role> members;
-    private Collection<Chunk> claims;
     private Location home;
     private HashMap<String, Location> warps;
     private List<FPlayer> invitedplayers;
@@ -92,14 +89,6 @@ public class Faction implements Serializable {
         this.maxpower = maxpower;
     }
 
-    public int getAmountclaimed() {
-        return amountclaimed;
-    }
-
-    public void setAmountclaimed(int amountclaimed) {
-        this.amountclaimed = amountclaimed;
-    }
-
     public int getMaxplayers() {
         return maxplayers;
     }
@@ -143,12 +132,12 @@ public class Faction implements Serializable {
         this.members = members;
     }
 
-    public Collection<Chunk> getClaims() {
+    public int getClaims() {
         return claims;
     }
 
-    public void setClaims(Collection<Chunk> claims) {
-        this.claims = claims;
+    public void setClaims(int amount) {
+        this.claims = amount;
     }
 
     public Location getHome() {
@@ -196,20 +185,7 @@ public class Faction implements Serializable {
     }
 
 
-    public static boolean isSameFaction(Chunk chunk, Faction faction){
-        PersistentDataContainer chunkPDC = chunk.getPersistentDataContainer();
-        if (chunkPDC.getKeys().contains(CLAIM_KEY)) {
-            return chunkPDC.get(CLAIM_KEY, PersistentDataType.STRING).equals(faction.getUUID().toString());
-        }
-        return false;
+    public static boolean isSameFaction(Faction faction1, Faction faction2){
+        return faction1 == faction2;
     }
-
-    public static boolean isWilderness(Chunk chunk){
-        PersistentDataContainer chunkPDC = chunk.getPersistentDataContainer();
-        if (!chunkPDC.getKeys().contains(CLAIM_KEY)){
-            return true;
-        }
-        return false;
-    }
-
 }

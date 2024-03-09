@@ -34,7 +34,6 @@ public class PlayerListeners implements Listener {
         }
 
         FPlayer fplayer = new FPlayer(player);
-
         Manager.FPlayers.put(player.getUniqueId(), fplayer);
     }
 
@@ -43,6 +42,9 @@ public class PlayerListeners implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Location location = event.getTo();
         Chunk currChunk = location.getChunk();
+
+        currChunk.getX();
+        currChunk.getZ();
 
         Player player = event.getPlayer();
         UUID playerUUID = player.getUniqueId();

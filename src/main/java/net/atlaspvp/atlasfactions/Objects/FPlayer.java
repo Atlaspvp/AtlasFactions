@@ -15,7 +15,6 @@ public class FPlayer implements Serializable {
 
     public FPlayer(Player Player){
         this.uuid = Player.getUniqueId();
-        this.faction = new Faction("Wilderness", Bukkit.getPlayer(uuid));
     }
 
     public UUID getUuid() {
