@@ -12,7 +12,7 @@ public class Create {
 
     @Command("f create")
     public void createFaction(final Player player, final String name) {
-        if (name.matches("^[a-zA-Z]{3,10}$")) {
+        if (name.matches("^[a-zA-Z0-9]{3,10}$")) {
             FPlayer fPlayer = Manager.getFPlayer(player);
 
             if (fPlayer.getFaction() != null && !fPlayer.getFaction().getName().equalsIgnoreCase("wilderness")) {
