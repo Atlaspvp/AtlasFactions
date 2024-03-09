@@ -3,6 +3,7 @@ package net.atlaspvp.atlasfactions;
 import net.atlaspvp.atlasfactions.CMD.Claim;
 import net.atlaspvp.atlasfactions.CMD.Create;
 import net.atlaspvp.atlasfactions.CMD.Desc;
+import net.atlaspvp.atlasfactions.CMD.Home;
 import net.atlaspvp.atlasfactions.Listeners.BlockListeners;
 import net.atlaspvp.atlasfactions.Listeners.PlayerListeners;
 import net.atlaspvp.atlasfactions.Memory.Consumer;
@@ -46,6 +47,7 @@ public final class AtlasFactions extends JavaPlugin {
         commandHandler.register(new Claim());
         commandHandler.register(new Create());
         commandHandler.register(new Desc());
+        commandHandler.register(new Home());
     }
 
     @Override

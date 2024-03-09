@@ -12,10 +12,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Faction implements Serializable {
     private String name;
@@ -188,6 +185,6 @@ public class Faction implements Serializable {
 
 
     public static boolean isSameFaction(Faction faction1, Faction faction2){
-        return faction1 == faction2;
+        return Objects.equals(faction1.getName(), faction2.getName());
     }
 }

@@ -20,14 +20,17 @@ public class Claim {
         if (player != null) {
             Chunk chunk = player.getChunk();
             FPlayer fplayer = Manager.getFPlayer(player);
-            if (fplayer.getFaction() != null) {
+            if (fplayer.getFaction() != null && !fplayer.getFaction().getName().equalsIgnoreCase("Wilderness")) {
                 if (!Manager.isClaimed(chunk)){
                     Manager.claim(chunk, fplayer.getFaction().getUUID().toString(), System.currentTimeMillis());
+                    player.sendMessage("Claimed chunk");
                 } else {
                     // Message
+                    player.sendMessage("Is already claimed");
                 }
             } else {
                 // Message
+                player.sendMessage("Not in a faction");
             }
         }
     }
@@ -39,14 +42,17 @@ public class Claim {
             FPlayer fplayer = Manager.getFPlayer(player);
             Chunk chunk = player.getChunk();
             Faction chunkOwner = Manager.getClaimOwner(chunk);
-            if (fplayer.getFaction() != null) {
+            if (fplayer.getFaction() != null && !fplayer.getFaction().getName().equalsIgnoreCase("Wilderness")) {
                 if (Faction.isSameFaction(chunkOwner, fplayer.getFaction())) {
                     Manager.Claims.remove(chunk.getX() + ";" + chunk.getZ());
+                    player.sendMessage("Unclaimed chunk");
                 } else {
                     // Message
+                    player.sendMessage("Not your land");
                 }
             } else {
                 // Message
+                player.sendMessage("No faction");
             }
         }
     }

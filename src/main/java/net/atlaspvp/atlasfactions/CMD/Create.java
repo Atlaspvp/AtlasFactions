@@ -15,7 +15,7 @@ public class Create {
         if (name.matches("^[a-zA-Z]{3,10}$")) {
             FPlayer fPlayer = Manager.getFPlayer(player);
 
-            if (!fPlayer.getFaction().getName().equalsIgnoreCase("wilderness")) {
+            if (fPlayer.getFaction() != null && !fPlayer.getFaction().getName().equalsIgnoreCase("wilderness")) {
                 player.sendMessage("You are already in a faction");
                 return;
             }

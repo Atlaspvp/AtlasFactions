@@ -49,9 +49,9 @@ public class PlayerListeners implements Listener {
                 Faction faction1 = Manager.getClaimOwner(prevChunk);
                 Faction faction2 = Manager.getClaimOwner(currChunk);
                 if (!faction1.equals(faction2)) {
-                    if (faction2.getName().equalsIgnoreCase("Wilderness")) {
+                    if (!faction1.getName().equalsIgnoreCase("Wilderness") && faction2.getName().equalsIgnoreCase("Wilderness")) {
                         event.getPlayer().sendMessage("You have entered the wilderness");
-                    } else {
+                    } else if (!faction1.getName().equalsIgnoreCase(faction2.getName())) {
                         event.getPlayer().sendMessage("You have entered " + faction2.getName());
                     }
                 }
