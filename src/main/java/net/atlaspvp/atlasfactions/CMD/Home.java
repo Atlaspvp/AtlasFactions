@@ -2,6 +2,7 @@ package net.atlaspvp.atlasfactions.CMD;
 
 import net.atlaspvp.atlasfactions.Objects.FPlayer;
 import net.atlaspvp.atlasfactions.Objects.Faction;
+import net.atlaspvp.atlasfactions.Objects.SerLocation;
 import net.atlaspvp.atlasfactions.Struct.Manager;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
@@ -18,7 +19,7 @@ public class Home {
             Faction chunkOwner = Manager.getClaimOwner(chunk);
             if (fplayer.getFaction() != null && !fplayer.getFaction().getName().equalsIgnoreCase("Wilderness")) {
                 if (Faction.isSameFaction(chunkOwner, fplayer.getFaction())) {
-                    fplayer.getFaction().setHome(player.getLocation());
+                    fplayer.getFaction().setHome(new SerLocation(player.getLocation(), "fhome"));
                     player.sendMessage("Set faction home");
                 } else {
                     // Message
@@ -58,7 +59,7 @@ public class Home {
             FPlayer fplayer = Manager.getFPlayer(player);
             if (fplayer.getFaction() != null && !fplayer.getFaction().getName().equalsIgnoreCase("Wilderness")) {
                 if (fplayer.getFaction().getHome() != null) {
-                    player.teleport(fplayer.getFaction().getHome());
+                    player.teleport(SerLocation.locationToLocation(fplayer.getFaction().getHome()));
                     player.sendMessage("Teleported to faction home");
                 } else {
                     // Message

@@ -29,7 +29,7 @@ public class Faction implements Serializable {
 
     private Inventory chest;
     private HashMap<FPlayer, Role> members;
-    private Location home;
+    private SerLocation home;
     private HashMap<String, Location> warps;
     private List<FPlayer> invitedplayers;
     private List<FPlayer> bannedplayers;
@@ -139,11 +139,11 @@ public class Faction implements Serializable {
         this.claims = amount;
     }
 
-    public Location getHome() {
+    public SerLocation getHome() {
         return home;
     }
 
-    public void setHome(Location home) {
+    public void setHome(SerLocation home) {
         this.home = home;
     }
 
