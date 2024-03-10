@@ -12,9 +12,22 @@ public class FPlayer implements Serializable {
     private UUID uuid;
     private Faction faction;
     private int power;
+    private boolean isMapOn;
 
     public FPlayer(Player Player){
         this.uuid = Player.getUniqueId();
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public boolean isMapOn() {
+        return isMapOn;
+    }
+
+    public void setMapOn(boolean mapOn) {
+        isMapOn = mapOn;
     }
 
     public UUID getUuid() {

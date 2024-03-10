@@ -58,5 +58,12 @@ public class PlayerListeners implements Listener {
             }
             playerSpecificChunkMap.put(playerUUID, currChunk);
         }
+
+        FPlayer fPlayer = Manager.getFPlayer(event.getPlayer());
+        if (fPlayer.isMapOn()) {
+            if (!currChunk.equals(prevChunk)) {
+                net.atlaspvp.atlasfactions.CMD.Map.presentToPlayer(event.getPlayer(), 8);
+            }
+        }
     }
 }
