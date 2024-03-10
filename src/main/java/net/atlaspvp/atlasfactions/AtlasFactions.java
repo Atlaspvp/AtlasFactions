@@ -46,6 +46,9 @@ public final class AtlasFactions extends JavaPlugin {
         commandHandler.register(new Desc());
         commandHandler.register(new Home());
         commandHandler.register(new Warps());
+        commandHandler.register(new Invite());
+        commandHandler.register(new Join());
+        commandHandler.register(new Leave());
     }
 
     @Override

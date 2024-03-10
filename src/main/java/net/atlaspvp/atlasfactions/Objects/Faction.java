@@ -31,16 +31,17 @@ public class Faction implements Serializable {
     private HashMap<FPlayer, Role> members;
     private SerLocation home;
     private List<SerLocation> warps;
-    private List<FPlayer> invitedplayers;
-    private List<FPlayer> bannedplayers;
+    private HashMap<FPlayer, Long> invitedPlayers;
+    private List<FPlayer> bannedPlayers;
 
     public Faction(String Name, Player player) {
-        uuid = UUID.randomUUID();
-        name = Name;
-        members = new HashMap<>();
+        this.uuid = UUID.randomUUID();
+        this.name = Name;
+        this.members = new HashMap<>();
+        this.invitedPlayers = new HashMap<>();
 
         if (player != null) {
-            members.put(Manager.getFPlayer(player), Role.OWNER);
+            this.members.put(Manager.getFPlayer(player), Role.OWNER);
         }
     }
 
@@ -155,20 +156,20 @@ public class Faction implements Serializable {
         this.warps = warps;
     }
 
-    public List<FPlayer> getInvitedplayers() {
-        return invitedplayers;
+    public HashMap<FPlayer, Long> getInvitedplayers() {
+        return invitedPlayers;
     }
 
-    public void setInvitedplayers(List<FPlayer> invitedplayers) {
-        this.invitedplayers = invitedplayers;
+    public void setInvitedplayers(HashMap<FPlayer, Long> invitedPlayers) {
+        this.invitedPlayers = invitedPlayers;
     }
 
     public List<FPlayer> getBannedplayers() {
-        return bannedplayers;
+        return bannedPlayers;
     }
 
     public void setBannedplayers(List<FPlayer> bannedplayers) {
-        this.bannedplayers = bannedplayers;
+        this.bannedPlayers = bannedplayers;
     }
 
     public String getName(){
