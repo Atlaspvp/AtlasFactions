@@ -52,7 +52,9 @@ public class Map {
                     line = line.append(Component.text("x", NamedTextColor.RED));
                 } else if (chunks.contains(player.getWorld().getChunkAt(x, z))) {
                     if (z <= centerChunkZ - radius + 2 && x <= centerChunkX - radius + 2) {
-                        if (x == centerChunkX - radius && z == centerChunkZ - radius) {
+                        if (x == centerChunkX - radius + 1 && z == centerChunkZ - radius + 1) {
+                            line = line.append(Component.text("+", NamedTextColor.BLUE));
+                        } else if (x == centerChunkX - radius && z == centerChunkZ - radius) {
                             line = line.append(Component.text("\\", NamedTextColor.BLUE));
                         } else if (x == centerChunkX - radius && z == centerChunkZ - radius + 1) {
                             line = line.append(Component.text("W", NamedTextColor.BLUE));
