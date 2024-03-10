@@ -42,7 +42,7 @@ public final class AtlasFactions extends JavaPlugin {
 
         this.commandHandler = BukkitCommandHandler.create(this);
         commandHandler.register(new Claim());
-        commandHandler.register(new Map())
+        commandHandler.register(new Map());
         commandHandler.register(new Create());
         commandHandler.register(new Desc());
         commandHandler.register(new Home());
