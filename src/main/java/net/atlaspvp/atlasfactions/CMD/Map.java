@@ -38,8 +38,44 @@ public class Map {
         return chunks;
     }
 
+    private static String getDirection(Player player) {
+        double rotation = (player.getLocation().getYaw() - 90) % 360;
+        if (rotation < 0) {
+            rotation += 360.0;
+            if (0 <= rotation && rotation < 22.5) {
+                return "North";
+            }
+            if (22.5 <= rotation && rotation < 67.5) {
+                return "NorthEast";
+            }
+            if (67.5 <= rotation && rotation < 112.5) {
+                return "East";
+            }
+            if (112.5 <= rotation && rotation < 157.5) {
+                return "SouthEast";
+            }
+            if (157.5 <= rotation && rotation < 202.5) {
+                return "South";
+            }
+            if (202.5 <= rotation && rotation < 247.5) {
+                return "SouthWest";
+            }
+            if (247.5 <= rotation && rotation < 292.5) {
+                return "West";
+            }
+            if (292.5 <= rotation && rotation < 337.5) {
+                return "NorthWest";
+            }
+            if (337.5 <= rotation && rotation < 359) {
+                return "North";
+            }
+        }
+        return null;
+    }
+
     public static void presentToPlayer(Player player, int radius) {
         Set<Chunk> chunks = getChunksInRadius(player, radius);
+        NamedTextColor facing;
 
         Chunk centerChunk = player.getLocation().getChunk();
         int centerChunkX = centerChunk.getX();
@@ -55,21 +91,30 @@ public class Map {
                         if (x == centerChunkX - radius + 1 && z == centerChunkZ - radius + 1) {
                             line = line.append(Component.text("+", NamedTextColor.BLUE));
                         } else if (x == centerChunkX - radius && z == centerChunkZ - radius) {
-                            line = line.append(Component.text("\\", NamedTextColor.BLUE));
+                            if (getDirection(player) == "SouthWest") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("\\", facing));
                         } else if (x == centerChunkX - radius && z == centerChunkZ - radius + 1) {
-                            line = line.append(Component.text("W", NamedTextColor.BLUE));
+                            if (getDirection(player) == "West") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("W", facing));
+
                         } else if (x == centerChunkX - radius && z == centerChunkZ - radius + 2) {
-                            line = line.append(Component.text("/", NamedTextColor.BLUE));
+                            if (getDirection(player) == "SouthEast") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("/", facing));
                         } else if (x == centerChunkX - radius + 1 && z == centerChunkZ - radius) {
-                            line = line.append(Component.text("N", NamedTextColor.BLUE));
+                            if (getDirection(player) == "North") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("N", facing));
                         } else if (x == centerChunkX - radius + 2 && z == centerChunkZ - radius) {
-                            line = line.append(Component.text("/", NamedTextColor.BLUE));
+                            if (getDirection(player) == "NorthWest") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("/", facing));
                         } else if (x == centerChunkX - radius + 1 && z == centerChunkZ - radius + 2) {
-                            line = line.append(Component.text("S", NamedTextColor.BLUE));
+                            if (getDirection(player) == "South") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("S", facing));
                         } else if (x == centerChunkX - radius + 2 && z == centerChunkZ - radius + 1) {
-                            line = line.append(Component.text("E", NamedTextColor.BLUE));
+                            if (getDirection(player) == "West") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("E", facing));
                         } else if (x == centerChunkX - radius + 2 && z == centerChunkZ - radius + 2) {
-                            line = line.append(Component.text("\\", NamedTextColor.BLUE));
+                            if (getDirection(player) == "NorthEast") {facing = NamedTextColor.RED;} else {facing = NamedTextColor.BLUE;}
+                            line = line.append(Component.text("\\", facing));
                         } else {
                             line = line.append(Component.text("-", NamedTextColor.WHITE));
                         }
