@@ -1,16 +1,19 @@
 package net.atlaspvp.atlasfactions;
 
 import net.atlaspvp.atlasfactions.CMD.*;
+import net.atlaspvp.atlasfactions.Integration.PlaceholderAPI;
 import net.atlaspvp.atlasfactions.Listeners.BlockListeners;
 import net.atlaspvp.atlasfactions.Listeners.PlayerListeners;
 import net.atlaspvp.atlasfactions.Memory.Consumer;
 import net.atlaspvp.atlasfactions.Memory.Sender;
-import net.atlaspvp.atlasfactions.Struct.Configuration;
+import net.atlaspvp.atlasfactions.Struct.Configurations.Configuration;
 import net.atlaspvp.atlasfactions.Struct.Manager;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.bukkit.BukkitCommandHandler;
 
 import java.util.HashMap;
+
+import static org.bukkit.Bukkit.getServer;
 
 public final class AtlasFactions extends JavaPlugin {
     public static AtlasFactions instance;
@@ -41,6 +44,7 @@ public final class AtlasFactions extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
 
         this.commandHandler = BukkitCommandHandler.create(this);
+        commandHandler.register(new RelationCMD());
         commandHandler.register(new Claim());
         commandHandler.register(new Map());
         commandHandler.register(new Create());
@@ -50,6 +54,10 @@ public final class AtlasFactions extends JavaPlugin {
         commandHandler.register(new Invite());
         commandHandler.register(new Join());
         commandHandler.register(new Leave());
+
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PlaceholderAPI(this).register();
+        }
     }
 
     @Override

@@ -3,16 +3,13 @@ package net.atlaspvp.atlasfactions.Memory;
 import com.rabbitmq.client.*;
 import net.atlaspvp.atlasfactions.Objects.FPlayer;
 import net.atlaspvp.atlasfactions.Objects.Faction;
-import net.atlaspvp.atlasfactions.Struct.Configuration;
+import net.atlaspvp.atlasfactions.Struct.Configurations.Configuration;
 import net.atlaspvp.atlasfactions.Struct.Manager;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 

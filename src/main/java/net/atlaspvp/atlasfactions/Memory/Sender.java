@@ -5,14 +5,13 @@ import com.rabbitmq.client.Connection;
 import net.atlaspvp.atlasfactions.Objects.FPlayer;
 import net.atlaspvp.atlasfactions.Objects.Faction;
 import net.atlaspvp.atlasfactions.Struct.Manager;
-import org.bukkit.entity.Player;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static net.atlaspvp.atlasfactions.Struct.Configuration.factory;
+import static net.atlaspvp.atlasfactions.Struct.Configurations.Configuration.factory;
 
 public class Sender {
 

@@ -1,4 +1,4 @@
-package net.atlaspvp.atlasfactions.Struct;
+package net.atlaspvp.atlasfactions.Struct.Configurations;
 
 import com.rabbitmq.client.ConnectionFactory;
 import org.bukkit.configuration.file.FileConfiguration;

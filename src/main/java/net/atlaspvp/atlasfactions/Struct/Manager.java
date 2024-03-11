@@ -26,6 +26,15 @@ public class Manager {
 
     public static Faction getFaction(String uuid) {return Factions.get(UUID.fromString(uuid));}
 
+    public static Faction getFactionByName(String name) {
+        for (Faction faction : Factions.values()) {
+            if (faction.getName().equals(name)) {
+                return faction;
+            }
+        }
+        return null;
+    }
+
     public static void claim (int x, int z, String uuid, Long time) {
         Claims.put(mergeCoordinates(x, z), mergeFactionAndTime(uuid, time));
     }

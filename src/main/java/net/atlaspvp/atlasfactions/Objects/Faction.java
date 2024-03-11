@@ -1,6 +1,7 @@
 package net.atlaspvp.atlasfactions.Objects;
 
 import net.atlaspvp.atlasfactions.AtlasFactions;
+import net.atlaspvp.atlasfactions.Integration.Relation;
 import net.atlaspvp.atlasfactions.Perm.Role;
 import net.atlaspvp.atlasfactions.Struct.Manager;
 import org.bukkit.Chunk;
@@ -29,6 +30,7 @@ public class Faction implements Serializable {
 
     private Inventory chest;
     private HashMap<FPlayer, Role> members;
+    private HashMap<Faction, Relation> relations;
     private SerLocation home;
     private List<SerLocation> warps;
     private HashMap<FPlayer, Long> invitedPlayers;
@@ -39,12 +41,21 @@ public class Faction implements Serializable {
         this.name = Name;
         this.members = new HashMap<>();
         this.invitedPlayers = new HashMap<>();
+        this.relations = new HashMap<>();
 
         if (player != null) {
             this.members.put(Manager.getFPlayer(player), Role.OWNER);
         }
     }
+// Relations
+    public HashMap<Faction, Relation> getRelations() {
+        return relations;
+    }
 
+    public void setRelations(HashMap<Faction, Relation> relations) {
+        this.relations = relations;
+    }
+// Relations
     public void setName(String name) {
         this.name = name;
     }

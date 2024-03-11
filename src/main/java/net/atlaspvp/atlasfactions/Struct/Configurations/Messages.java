@@ -1,4 +1,4 @@
-package net.atlaspvp.atlasfactions.Struct;
+package net.atlaspvp.atlasfactions.Struct.Configurations;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
