@@ -1,5 +1,6 @@
 package net.atlaspvp.atlasfactions.CMD;
 
+import net.atlaspvp.atlasfactions.Integration.Relation;
 import net.atlaspvp.atlasfactions.Objects.FPlayer;
 import net.atlaspvp.atlasfactions.Objects.Faction;
 import net.atlaspvp.atlasfactions.Struct.Manager;
@@ -106,7 +107,7 @@ public class Map {
                                     factionLetterMap.put(faction.getUuid().toString(), String.valueOf(currentLetter));
                                     currentLetter++;
                                 }
-                                line = line.append(Component.text(factionLetterMap.get(faction.getUuid().toString()), NamedTextColor.WHITE));
+                                line = line.append(Component.text(factionLetterMap.get(faction.getUuid().toString()), Relation.RelactionOfFactionsColor(Manager.getFPlayer(player).getFaction(), faction)));
                             } else {
                                 line = line.append(Component.text("-", NamedTextColor.WHITE));
                             }
@@ -118,7 +119,7 @@ public class Map {
                                 factionLetterMap.put(faction.getUuid().toString(), String.valueOf(currentLetter));
                                 currentLetter++;
                             }
-                            line = line.append(Component.text(factionLetterMap.get(faction.getUuid().toString()), NamedTextColor.WHITE));
+                            line = line.append(Component.text(factionLetterMap.get(faction.getUuid().toString()), Relation.RelactionOfFactionsColor(Manager.getFPlayer(player).getFaction(), faction)));
                         } else {
                             line = line.append(Component.text("-", NamedTextColor.WHITE));
                         }
@@ -133,7 +134,7 @@ public class Map {
         Component fMapKey = Component.text("Factions on the map:\n", NamedTextColor.WHITE);
         for (java.util.Map.Entry<String, String> entry : factionLetterMap.entrySet()) {
             Faction faction = Manager.getFaction(UUID.fromString(entry.getKey()));
-            fMapKey = fMapKey.append(Component.text(faction.getName() + ": " + entry.getValue() + " ", NamedTextColor.WHITE));
+            fMapKey = fMapKey.append(Component.text(faction.getName() + ": " + entry.getValue() + " ", Relation.RelactionOfFactionsColor(Manager.getFPlayer(player).getFaction(), faction)));
         }
 
         player.sendMessage(fMapKey);
