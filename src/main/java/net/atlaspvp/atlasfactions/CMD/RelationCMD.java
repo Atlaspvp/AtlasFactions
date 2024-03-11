@@ -22,33 +22,13 @@ public class RelationCMD {
 
         switch (relation) {
             case "enemy" :
-                System.out.println("you trying to enemy hoe");
                 requesting.getRelations().remove(beingrequested);
                 beingrequested.getRelations().remove(requesting);
-
                 requesting.getRelations().put(beingrequested, Relation.ENEMY);
                 beingrequested.getRelations().put(requesting, Relation.ENEMY);
-
-                for (Faction related : requesting.getRelations().keySet()) {
-                    System.out.println(related.getName() + ", " + requesting.getRelations().get(related).getName());
-                }
-
-                for (Faction related : beingrequested.getRelations().keySet()) {
-                    System.out.println(related.getName() + ", " + beingrequested.getRelations().get(related).getName());
-                }
                 return;
 
             case "neutral" :
-                System.out.println("you trying to neutral hoe");
-
-                for (Faction related : requesting.getRelations().keySet()) {
-                    System.out.println(related.getName() + ", " + requesting.getRelations().get(related).getName());
-                }
-
-                for (Faction related : beingrequested.getRelations().keySet()) {
-                    System.out.println(related.getName() + ", " + beingrequested.getRelations().get(related).getName());
-                }
-
                 requesting.getRelations().remove(beingrequested);
                 beingrequested.getRelations().remove(requesting);
                 return;
